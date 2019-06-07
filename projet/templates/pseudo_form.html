@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>{{titre}}</title>
+    </head>
+    <body>
+        <h1>{{ titre }}</h1>
+        <h1>{{pseudo}}</h1>
+        <form action="" method="post">
+            <label for="pseudo">Votre pseudo</label><br />
+            <input type="text" id='pseudo' name="pseudo" value="">
+            <input type="radio" id="temp" value="temporaire" name="check"> Session temporaire
+            <label for="temp"></label>
+            <input type="radio" id="mens" value="mensuelle" name="check"> Session mensuelle
+            <label for="mens"></label>
+            <input type="submit" value="Envoyer">
+        </form>
+        {% if session['pseudo'] %}
+            <a href="/logout">se deconnecter</a>
+        {% endif %}
+    </body>
+</html>

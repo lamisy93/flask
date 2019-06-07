@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    {% include 'header.html' %}
+    <body>
+        <h1>{{ titre }}</h1>
+        {% with msg_erreur = get_flashed_messages(category_filter=["erreur"]) %}
+        {% if messages %}
+            <ul>
+            {% for m in messages %}
+                <li>{{ m }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
+        {% with msg_succes = get_flashed_messages(category_filter=["succes"]) %}
+        {% if messages %}
+            <ul>
+            {% for m in messages %}
+                <li>{{ m }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
+        <ul>
+        {% for mot in mots %}
+            <li>{{ mot }}</li>
+        {% endfor %}
+        <h1>La date d'aujourd'hui est : {{ la_date }}</h1>
+        {% set menu = ['accueil', 'news', 'contact'] %}
+        {% with menu = ['accueil', 'news', 'contact'] %}
+            {{ menu[0] }}
+            {{ menu[1] }}
+            {{ menu[2]|capitalize }}
+        {% endwith %}
+        {{ ["Salut", "Les", "Zéros"] | join(', ') }}
+        </ul>
+        <p>
+            {% set age = "16" %}
+            {% if age|int < 18 %}
+                Halte là ! Accès non autorisé aux mineurs.
+            {% elif age|int < 90 %}
+                Accès autorisé. Enjoy !
+            {% else %}
+                Allez-y doucement.
+            {% endif %}
+        </p>
+        {% set age = "20" %}
+        {% if age|int == 20 %}
+            <p>Vous avez 20 ans tout pile, vous bénéficiez d'une remise exceptionnelle !</p>
+        {% endif %}
+        {% set age = 20 %}
+        {% if age is divisibleby(10) %}
+            <p>Votre âge est un multiple de 10.</p>
+        {% endif %}
+        {% if truc is not defined %}
+            <p>La variable truc n'est pas defined.</p>
+        {% endif %}
+        <ul>
+        {% for mot in mots|reverse %}
+            <li>{{ mot }}</li>
+        {% endfor %}
+        </ul>
+        {% if mots|length > 10 %}
+            <ul>
+            {% for i in range(10) %}
+                <li>{{ mots[i] }}</li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>Vous devez entrer dix mots au minimum.</p>
+        {% endif %}
+        {{ "Hello World"|replace("Hello", "Goodbye") }}
+        {{ [1, 2, 3]|max }}
+        {% if nombre is impair %}
+            {{ nombre }} est impair.
+        {% else %}
+            {{ nombre }} est pair.
+        {% endif %}
+        {% block contenu %}
+        <p>Laissez moi un message en remplissant ce formulaire :</p>
+        <form action="" method="post">
+            <label for="msg">Votre message</label><br />
+            <textarea id="msg" name="msg"></textarea><br />
+            <input type="submit" value="Envoyer">
+        </form>
+        {% endblock %}
+    </body>
+</html>

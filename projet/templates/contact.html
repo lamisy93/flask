@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    {% include 'header.html' %}
+    <body>
+        <h1>{{ titre }}</h1>
+        {% with msg_erreur = get_flashed_messages(category_filter=["erreur"]) %}
+        {% if messages %}
+            <ul>
+            {% for m in messages %}
+                <li>{{ m }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
+        {% with msg_succes = get_flashed_messages(category_filter=["succes"]) %}
+        {% if messages %}
+            <ul>
+            {% for m in messages %}
+                <li>{{ m }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
+        <ul>
+        <p>Laissez moi un message en remplissant ce formulaire :</p>
+        <form action="" method="post">
+            <label for="msg">Votre message</label><br />
+            <textarea id="msg" name="msg"></textarea><br />
+            <input type="submit" value="Envoyer">
+        </form>
+    </body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>{{ titre }}</title>
+        <title>{% block title %}{% endblock %}</title>
+        <link href="{{ url_for('static', filename='mon_style.css') }}" rel="stylesheet" type="text/css" />
+        {% macro link(nom_fichiers, extension='css') %}
+            {% for fichier in nom_fichiers %}
+                <link href="{{ url_for('static', filename=fichier + '.' + extension) }}" rel="stylesheet" type="text/css" />
+                {{ link['mon_style'] }}
+            {% endfor %}
+        {% endmacro %}
+    </head>
+</html>
